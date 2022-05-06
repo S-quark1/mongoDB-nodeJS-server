@@ -27,7 +27,7 @@ exports.login_post = async (req, res) => {
 
     req.session.isAuth = true;
     req.session.username = user.username;
-    res.redirect('/admin/admin-page');
+    res.redirect('/');
 };
 
 exports.register_get = (req, res) => {
@@ -55,7 +55,7 @@ exports.register_post = async (req, res) => {
     });
 
     await user.save();
-    res.redirect('/admin/admin-page');
+    res.redirect('/');
 };
 
 exports.dashboard_get = (req, res) => {

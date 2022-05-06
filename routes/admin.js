@@ -14,7 +14,4 @@ router
     .route('/register')
     .get(adminController.register_get)
     .post(adminController.register_post)
-router
-    .route('/admin-page')
-    .get(isAuth, adminController.dashboard_get)
 module.exports = router

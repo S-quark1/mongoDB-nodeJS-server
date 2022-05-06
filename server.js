@@ -28,7 +28,7 @@ app.use(
 app.use('/admin', require("./routes/admin"))
 // app.use('/login',require("./routes/admin_login"))
 // app.use('/register',require("./routes/admin_reg"))
-// app.use('/admin_page', require("./routes/admin_page"))
+app.use('/', require("./routes/admin-main-page"))
 // app.use('/logout', require("./routes/admin_logout"))
 
 app.listen(8080,() =>
