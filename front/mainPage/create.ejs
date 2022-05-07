@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.88.1">
-    <title>Home</title>
+    <title>Create</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/headers/">
 
@@ -41,7 +41,7 @@
         <header class="d-flex justify-content-center py-3">
             <ul class="nav nav-pills">
                 <li class="nav-item"><a href="/" class="nav-link active" aria-current="page">Create</a></li>
-                <li class="nav-item"><a href="/user" class="nav-link">Read</a></li>
+                <li class="nav-item"><a href="/read" class="nav-link">Read</a></li>
                 <li class="nav-item"><a href="/find" class="nav-link">Find</a></li>
                 <li class="nav-item"><a href="/update" class="nav-link">Update</a></li>
                 <li class="nav-item"><a href="/delete" class="nav-link">Delete</a></li>
@@ -55,7 +55,8 @@
     <div class="container">
         <div class="col-md-7 col-lg-8">
             <h4 class="mb-3">Create</h4>
-            <form action="/user" class="needs-validation" novalidate method="post">
+            <h4 class="mb-3">Hello admin '<%=username%>'!</h4>
+            <form action="/read" class="needs-validation" novalidate method="post">
                 <div class="row g-3">
                     <div class="col-sm-6">
                         <label for="email" class="form-label">Email</label>
@@ -67,27 +68,43 @@
                     </div>
 
                     <div class="col-sm-6">
-                        <label for="firstName" class="form-label">First name</label>
-                        <input type="text" class="form-control" name="firstName" id="firstName" placeholder="" value=""
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" class="form-control" name="username" id="username" placeholder="" value=""
                                required>
                         <div class="invalid-feedback">
-                            Valid first name is required.
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <label for="lastName" class="form-label">Last name</label>
-                        <input type="text" class="form-control" name="lastName" id="lastName" placeholder="" value=""
-                               required>
-                        <div class="invalid-feedback">
-                            Valid last name is required.
+                            Valid username is required.
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <label for="phone" class="form-label">Phone</label>
-                        <input type="text" class="form-control" name="phone" id="phone" placeholder="" value=""
+                        <input type="number" class="form-control" name="phone" id="phone" placeholder="" value=""
                                required>
                         <div class="invalid-feedback">
                             Valid phone is required.
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="city" class="form-label">City</label>
+                        <input type="text" class="form-control" name="city" id="city" placeholder="" value=""
+                               required>
+                        <div class="invalid-feedback">
+                            Valid city is required.
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="postIndex" class="form-label">Post Index</label>
+                        <input type="number" class="form-control" name="postIndex" id="postIndex" placeholder="" value=""
+                               required>
+                        <div class="invalid-feedback">
+                            Valid post index is required.
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" name="password" id="password" placeholder="" value=""
+                               required>
+                        <div class="invalid-feedback">
+                            Valid password is required.
                         </div>
                     </div>
                 </div>
@@ -99,12 +116,15 @@
         </div>
     </div>
 </main>
-<h4 class="mb-3">About front:</h4>
-<h4 class="mb-3">All credits to: <a href="https://shrouded-chamber-34995.herokuapp.com/">our teacher's website!</a></h4>
-<form action="/admin/logout" method="POST">
-
-    <button>Logout</button>
-</form>
+<footer class="my-5 pt-5 text-muted text-center text-small">
+    <p class="mb-1">All credits to: </p>
+    <ul class="list-inline">
+        <li class="list-inline-item"><a href="https://shrouded-chamber-34995.herokuapp.com/">our teacher's website!</a></li>
+    </ul>
+    <form action="/admin/logout" method="POST">
+        <button>Logout</button>
+    </form>
+</footer>
 
 <script src="/docs/5.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"

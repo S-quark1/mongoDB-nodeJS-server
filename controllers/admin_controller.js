@@ -58,10 +58,10 @@ exports.register_post = async (req, res) => {
     res.redirect('/');
 };
 
-exports.dashboard_get = (req, res) => {
-    const username = req.session.username;
-    res.render(path.resolve('./front/goal.ejs'), { name: username });
-};
+// exports.main_get = (req, res) => {
+//     const username = req.session.username;
+//     res.render(path.resolve('./front/mainPage/create.ejs'), { name: username });
+// };
 
 exports.logout_post = (req, res) => {
     req.session.destroy((err) => {
