@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.88.1">
-    <title>Read</title>
+    <title>Admin page</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/headers/">
 
@@ -36,49 +36,84 @@
 <main>
     <div class="container">
         <div class="col-md-7 col-lg-8">
-            <hr class="my-4">
+            <br>
             <div>
-                <label for="data" class="form-label">Result of your query: </label>
+                <% if(Array.isArray(sellerData)){ %>
+                    <% if(sellerData.length === 0){ %>
+                        <h5 class="mb-3">No sellers so far</h5>
+                    <% } else{ %>
+                        <h5 class="mb-3">Result for Sellers: </h5>
+                        <table>
+                            <tr>
+                                <td>Username</td>
+                                <td>Email</td>
+                                <td>Phone</td>
+                                <td>Password (Hashed)</td>
+                            </tr>
 
-                <table>
-                    <tr>
-                        <td>First Name</td>
-                        <td>Last Name</td>
-                        <td>Email</td>
-                        <td>Phone</td>
-                    </tr>
+                            <% for(let i = 0;i < sellerData.length;i++){ %>
+                                <tr>
+                                    <td><%= sellerData[i].username %></td>
+                                    <td><%= sellerData[i].email %></td>
+                                    <td><%= sellerData[i].phone %></td>
+                                    <td><%= sellerData[i].password %></td>
+                                </tr>
+                            <% } %>
+                        </table>
+                    <% } %>
+                <% } %>
+                <br>
+                <% if(Array.isArray(customerData)){ %>
+                    <% if(customerData.length === 0){ %>
+                        <h5 class="mb-3">No customers so far</h5>
+                    <% } else{ %>
+                        <h5 class="mb-3">Result for Customers: </h5>
+                        <table>
+                            <tr>
+                                <td>Username</td>
+                                <td>Email</td>
+                                <td>Phone</td>
+                                <td>City</td>
+                                <td>Post Index</td>
+                                <td>Password (Hashed)</td>
+                            </tr>
 
+                            <% for(let i = 0;i < customerData.length;i++){ %>
+                                <tr>
+                                    <td><%= customerData[i].username %></td>
+                                    <td><%= customerData[i].email %></td>
+                                    <td><%= customerData[i].phone %></td>
+                                    <td><%= customerData[i].city %></td>
+                                    <td><%= customerData[i].postIndex %></td>
+                                    <td><%= customerData[i].password %></td>
+                                </tr>
+                            <% } %>
+                        </table>
+                    <% } %>
+                <% } %>
+                <br>
+                <% if(Array.isArray(adminData)){ %>
+                    <% if(adminData.length === 0){ %>
+                        <h5 class="mb-3">No admin found</h5>
+                    <% } else{ %>
+                        <h5 class="mb-3">Result for Admins: </h5>
+                        <table>
+                            <tr>
+                                <td>Username</td>
+                                <td>Email</td>
+                                <td>Password (Hashed)</td>
+                            </tr>
 
-                    <tr>
-                        <td>asd</td>
-                        <td>qwe</td>
-                        <td>goldilocks123@mail.ru</td>
-                        <td>123</td>
-                    </tr>
-
-                    <tr>
-                        <td>Alizhan</td>
-                        <td>K</td>
-                        <td>211647@astanait.edu.kz</td>
-                        <td>777</td>
-                    </tr>
-
-                    <tr>
-                        <td>sanya</td>
-                        <td>colossal</td>
-                        <td>sanya@sanya.ru</td>
-                        <td>+7 775 457 01 90</td>
-                    </tr>
-
-                    <tr>
-                        <td>kasim-jomart</td>
-                        <td>tokaev</td>
-                        <td>Tokaevpower@gmail.com</td>
-                        <td>88005555555</td>
-                    </tr>
-
-                </table>
-
+                            <% for(let i = 0;i < adminData.length;i++){ %>
+                                <tr>
+                                    <td><%= adminData[i].username %></td>
+                                    <td><%= adminData[i].email %></td>
+                                    <td><%= adminData[i].password %></td>
+                                </tr>
+                            <% } %>
+                        </table>
+                    <% } %>
+                <% } %>
             </div>
         </div>
     </div>
@@ -86,7 +121,8 @@
 <footer class="my-5 pt-5 text-muted text-center text-small">
     <p class="mb-1">All credits to: </p>
     <ul class="list-inline">
-        <li class="list-inline-item"><a href="https://shrouded-chamber-34995.herokuapp.com/">our teacher's website!</a></li>
+        <li class="list-inline-item"><a href="https://shrouded-chamber-34995.herokuapp.com/">our teacher's website!</a>
+        </li>
     </ul>
     <form action="/admin/logout" method="POST">
         <button>Logout</button>
