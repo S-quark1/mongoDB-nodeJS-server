@@ -7,7 +7,7 @@ const path = require("path")
 exports.create_get = async (req, res) => {
     const error = req.session.error;
     const name = req.session.username;
-    res.render(path.resolve('./front/mainPage/create.ejs'), {username: name, err: error});
+    res.render(path.resolve('./front/adminPage/create.ejs'), {username: name, err: error});
 };
 
 exports.create_post = async (req, res) => {
@@ -15,7 +15,7 @@ exports.create_post = async (req, res) => {
 
     if (!username && !email && !phone && !password) {
         req.session.error = "Content empty!";
-        return res.redirect('/');
+        return res.redirect('/admin');
     }
 
     let seller = await Seller.findOne({email})
@@ -23,7 +23,7 @@ exports.create_post = async (req, res) => {
     let admin = await Admin.findOne({email})
     if (seller || customer || admin) {
         req.session.error = "Email taken!";
-        return res.redirect('/');
+        return res.redirect('/admin');
     }
 
     seller = await Seller.findOne({username})
@@ -31,7 +31,7 @@ exports.create_post = async (req, res) => {
     admin = await Admin.findOne({username})
     if (seller || customer || admin) {
         req.session.error = "Username taken!";
-        return res.redirect('/');
+        return res.redirect('/admin');
     }
 
     const hashPsw = await bcrypt.hash(req.body.password, 11);
@@ -45,14 +45,14 @@ exports.create_post = async (req, res) => {
 
     await seller.save()
     req.session.error = ''
-    res.redirect('/read')
+    res.redirect('/admin/read')
 };
 
 exports.read_get = async (req, res) => {
     const seller = await Seller.find()
     const customer = await Customer.find()
     const admin = await Admin.find()
-    res.render(path.resolve('./front/mainPage/read.ejs'), {
+    res.render(path.resolve('./front/adminPage/read.ejs'), {
         sellerData: seller,
         customerData: customer,
         adminData: admin
@@ -60,12 +60,12 @@ exports.read_get = async (req, res) => {
 };
 
 exports.find_get = async (req, res) => {
-    res.render(path.resolve('./front/mainPage/find.ejs'), {data: null, type: null});
+    res.render(path.resolve('./front/adminPage/find.ejs'), {data: null, type: null});
 };
 
 exports.find_post = async (req, res) => {
     const {email} = req.body
-    const p = path.resolve('./front/mainPage/find.ejs')
+    const p = path.resolve('./front/adminPage/find.ejs')
 
     let seller = await Seller.findOne({email})
     let customer = await Customer.findOne({email})
@@ -84,7 +84,7 @@ exports.find_post = async (req, res) => {
 
 exports.update_get = async (req, res) => {
     const error = req.session.error;
-    res.render(path.resolve('./front/mainPage/update.ejs'), {err: error, oldSeller: null, newSeller: null});
+    res.render(path.resolve('./front/adminPage/update.ejs'), {err: error, oldSeller: null, newSeller: null});
 };
 
 exports.update_patch = async (req, res) => {
@@ -92,7 +92,7 @@ exports.update_patch = async (req, res) => {
 
     if (!currUsername && !username && !email && !phone && !password) {
         req.session.error = "Content empty!";
-        return res.redirect('/update');
+        return res.redirect('/admin/update');
     }
 
     // let prev = await Seller.findOne({currEmail})
@@ -115,10 +115,10 @@ exports.update_patch = async (req, res) => {
     }).then(data => {
         if (!data) {
             req.session.error = "Seller to update does not exist!";
-            return res.redirect('/update');
+            return res.redirect('/admin/update');
         } else {
             req.session.error = ''
-            res.render(path.resolve('./front/mainPage/update.ejs'), {err: null, oldSeller: currUsername, newSeller: seller});
+            res.render(path.resolve('./front/adminPage/update.ejs'), {err: null, oldSeller: currUsername, newSeller: seller});
         }
     })
     // if (prev) {
@@ -128,7 +128,7 @@ exports.update_patch = async (req, res) => {
     //         phone,
     //         hashPsw,
     //     })
-    //     res.render(path.resolve('./front/mainPage/update.ejs'), {err: null, oldSeller: prev, newSeller: req.body});
+    //     res.render(path.resolve('./front/adminPage/update.ejs'), {err: null, oldSeller: prev, newSeller: req.body});
     // }
     // // else if (customer) {
     // //     await Customer.findOneAndUpdate({email: currUsername}, {
@@ -146,12 +146,12 @@ exports.update_patch = async (req, res) => {
 };
 
 exports.delete_get = async (req, res) => {
-    res.render(path.resolve('./front/mainPage/delete.ejs'), {name: null, type: null});
+    res.render(path.resolve('./front/adminPage/delete.ejs'), {name: null, type: null});
 };
 
 exports.delete_post = async (req, res) => {
     const {email} = req.body
-    const p = path.resolve('./front/mainPage/delete.ejs')
+    const p = path.resolve('./front/adminPage/delete.ejs')
 
     let seller = await Seller.findOne({email})
     let customer = await Customer.findOne({email})

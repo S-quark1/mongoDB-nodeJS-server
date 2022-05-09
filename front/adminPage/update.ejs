@@ -23,11 +23,11 @@
     <div class="container">
         <header class="d-flex justify-content-center py-3">
             <ul class="nav nav-pills">
-                <li class="nav-item"><a href="/" class="nav-link">Create</a></li>
-                <li class="nav-item"><a href="/read" class="nav-link">Read</a></li>
-                <li class="nav-item"><a href="/find" class="nav-link">Find</a></li>
-                <li class="nav-item"><a href="/update" class="nav-link active" aria-current="page">Update</a></li>
-                <li class="nav-item"><a href="/delete" class="nav-link">Delete</a></li>
+                <li class="nav-item"><a href="/admin" class="nav-link">Create</a></li>
+                <li class="nav-item"><a href="/admin/read" class="nav-link">Read</a></li>
+                <li class="nav-item"><a href="/admin/find" class="nav-link">Find</a></li>
+                <li class="nav-item"><a href="/admin/update" class="nav-link active" aria-current="page">Update</a></li>
+                <li class="nav-item"><a href="/admin/delete" class="nav-link">Delete</a></li>
             </ul>
         </header>
     </div>
@@ -41,7 +41,7 @@
         <% } %>
         <div class="col-md-7 col-lg-8">
             <h4 class="mb-3">Update Seller</h4>
-            <form action="/update" class="needs-validation" novalidate method="POST">
+            <form action="/admin/update" class="needs-validation" method="POST">
                 <div class="row g-3">
                     <div class="col-sm-6">
 <!--                        <label for="currEmail" class="form-label">Current Email</label>-->
@@ -54,7 +54,7 @@
                         <input type="text" class="form-control" name="currUsername" id="currUsername" placeholder=""
                                value="" required>
                         <div class="invalid-feedback">
-                            Valid email is required.
+                            Valid username is required.
                         </div>
                     </div>
                 </div>
@@ -73,7 +73,7 @@
                         <input type="text" class="form-control" name="username" id="username" placeholder="" value=""
                                required>
                         <div class="invalid-feedback">
-                            Valid email is required.
+                            Valid username is required.
                         </div>
                     </div>
                     <div class="col-sm-6">
@@ -81,7 +81,7 @@
                         <input type="number" class="form-control" name="phone" id="phone" placeholder="" value=""
                                required>
                         <div class="invalid-feedback">
-                            Valid email is required.
+                            Valid phone is required.
                         </div>
                     </div>
                     <div class="col-sm-6">
@@ -89,7 +89,7 @@
                         <input type="password" class="form-control" name="password" id="password" placeholder=""
                                value="" required>
                         <div class="invalid-feedback">
-                            Valid email is required.
+                            Valid password is required.
                         </div>
                     </div>
                 </div>

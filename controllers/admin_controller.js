@@ -1,8 +1,8 @@
 const bcrypt = require("bcryptjs")
 const Admin = require("../models/admin")
-const path = require("path");
 const Seller = require("../models/seller");
 const Customer = require("../models/consumer");
+const path = require("path");
 
 exports.login_get = async (req, res) => {
     const error = req.session.error;
@@ -29,7 +29,7 @@ exports.login_post = async (req, res) => {
 
     req.session.isAuth = true;
     req.session.username = user.username;
-    res.redirect('/');
+    res.redirect('/admin');
 };
 
 exports.register_get = async (req, res) => {
@@ -72,13 +72,8 @@ exports.register_post = async (req, res) => {
     });
 
     await admin.save();
-    res.redirect('/');
+    res.redirect('/admin');
 };
-
-// exports.main_get = (req, res) => {
-//     const username = req.session.username;
-//     res.render(path.resolve('./front/mainPage/create.ejs'), { name: username });
-// };
 
 exports.logout_post = async (req, res) => {
     req.session.destroy((err) => {
