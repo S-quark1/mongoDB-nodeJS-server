@@ -26,7 +26,7 @@ app.use(
     })
 ) //stores the session
 
-app.use('/admin', require("./routes/admin"))
+// app.use('/admin', require("./routes/admin"))
 app.use('/admin', require("./routes/admin-main-page"))
 app.get('/trident', (req, res) => res.render(path.resolve('./front/trident.ejs')))
 // app.use('/logout', require("./routes/admin_logout"))

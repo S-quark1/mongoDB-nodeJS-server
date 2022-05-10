@@ -6,6 +6,7 @@ const path = require("path")
 
 exports.create_get = async (req, res) => {
     const error = req.session.error;
+    delete req.session.error;
     const name = req.session.username;
     res.render(path.resolve('./front/adminPage/create.ejs'), {username: name, err: error});
 };
@@ -44,7 +45,6 @@ exports.create_post = async (req, res) => {
     });
 
     await seller.save()
-    req.session.error = ''
     res.redirect('/admin/read')
 };
 
@@ -63,7 +63,7 @@ exports.find_get = async (req, res) => {
     res.render(path.resolve('./front/adminPage/find.ejs'), {data: null, type: null});
 };
 
-exports.find_post = async (req, res) => {
+exports.muissa = async (req, res) => {
     const {email} = req.body
     const p = path.resolve('./front/adminPage/find.ejs')
 
@@ -78,12 +78,13 @@ exports.find_post = async (req, res) => {
     } else if (admin) {
         res.render(p, {data: admin, type: 'Admin'})
     } else {
-        res.render(p, {data: null, type: 'None'})
+        res.render(p, {data: null, type: 'orange'})
     }
 };
 
 exports.update_get = async (req, res) => {
     const error = req.session.error;
+    delete req.session.error;
     res.render(path.resolve('./front/adminPage/update.ejs'), {err: error, oldSeller: null, newSeller: null});
 };
 
@@ -117,7 +118,6 @@ exports.update_patch = async (req, res) => {
             req.session.error = "Seller to update does not exist!";
             return res.redirect('/admin/update');
         } else {
-            req.session.error = ''
             res.render(path.resolve('./front/adminPage/update.ejs'), {err: null, oldSeller: currUsername, newSeller: seller});
         }
     })
